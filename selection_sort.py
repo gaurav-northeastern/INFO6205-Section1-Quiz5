@@ -17,8 +17,8 @@ class SelectionSort:
                        If None, the < operator is used for comparison.
         """
         self.comparator = comparator
-        self.comparisons = 0
-        self.swaps = 0
+        self.comparisons = 0  # Count of comparisons made during sorting
+        self.swaps = 0  # Count of swaps made during sorting
     
     def _less(self, v: T, w: T) -> bool:
         """
@@ -56,9 +56,15 @@ class SelectionSort:
         Args:
             arr: The array to sort
         """
-        # STUDENT TODO: Implement the selection sort algorithm
-        # You should use the helper methods _less and _exch
-        pass
+        n = len(arr)
+        for i in range(n):
+            min_index = i  # Assume the current index as the minimum
+            for j in range(i + 1, n):
+                if self._less(arr[j], arr[min_index]):
+                    min_index = j  # Update the minimum index
+            
+            if min_index != i:
+                self._exch(arr, i, min_index)  # Swap if a smaller element is found
     
     def is_sorted(self, arr: List[T]) -> bool:
         """
